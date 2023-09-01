@@ -71,7 +71,7 @@ RUN \
 
 # Generate and install favicons.
 RUN \
-    APP_ICON_URL=https://github.com/imodstyle/docker-firefox/image/master/jlesage/images/firefox-icon.png && \
+    APP_ICON_URL=https://raw.githubusercontent.com/imodstyle/docker-firefox/master/img/firefox-icon.png && \
     install_app_icon.sh "$APP_ICON_URL"
 
 # Add files.
