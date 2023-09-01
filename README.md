@@ -1,10 +1,4 @@
-# Docker container for Firefox
-[![Release](https://img.shields.io/github/release/jlesage/docker-firefox.svg?logo=github&style=for-the-badge)](https://github.com/jlesage/docker-firefox/releases/latest)
-[![Docker Image Size](https://img.shields.io/docker/image-size/jlesage/firefox/latest?logo=docker&style=for-the-badge)](https://hub.docker.com/r/jlesage/firefox/tags)
-[![Docker Pulls](https://img.shields.io/docker/pulls/jlesage/firefox?label=Pulls&logo=docker&style=for-the-badge)](https://hub.docker.com/r/jlesage/firefox)
-[![Docker Stars](https://img.shields.io/docker/stars/jlesage/firefox?label=Stars&logo=docker&style=for-the-badge)](https://hub.docker.com/r/jlesage/firefox)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/jlesage/docker-firefox/build-image.yml?logo=github&branch=master&style=for-the-badge)](https://github.com/jlesage/docker-firefox/actions/workflows/build-image.yml)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?style=for-the-badge)](https://paypal.me/JocelynLeSage)
+# Docker container for Firefox Based of Jlesage Repository
 
 This project implements a Docker container for [Firefox](https://www.mozilla.org/en-US/firefox/).
 
@@ -12,8 +6,6 @@ The GUI of the application is accessed through a modern web browser (no
 installation or configuration needed on the client side) or via any VNC client.
 
 ---
-
-[![Firefox logo](https://images.weserv.nl/?url=raw.githubusercontent.com/jlesage/docker-templates/master/jlesage/images/firefox-icon.png&w=110)](https://www.mozilla.org/en-US/firefox/)[![Firefox](https://images.placeholders.dev/?width=224&height=110&fontFamily=monospace&fontWeight=400&fontSize=52&text=Firefox&bgColor=rgba(0,0,0,0.0)&textColor=rgba(121,121,121,1))](https://www.mozilla.org/en-US/firefox/)
 
 Mozilla Firefox is a free and open-source web browser developed by Mozilla
 Foundation and its subsidiary, Mozilla Corporation.
@@ -63,7 +55,7 @@ docker run -d \
     --name=firefox \
     -p 5800:5800 \
     -v /docker/appdata/firefox:/config:rw \
-    jlesage/firefox
+    imodstyle/firefox
 ```
 
 Where:
@@ -80,7 +72,7 @@ docker run [-d] \
     [-e <VARIABLE_NAME>=<VALUE>]... \
     [-v <HOST_DIR>:<CONTAINER_DIR>[:PERMISSIONS]]... \
     [-p <HOST_PORT>:<CONTAINER_PORT>]... \
-    jlesage/firefox
+    imodstyle/firefox
 ```
 
 | Parameter | Description |
@@ -227,25 +219,12 @@ ports are part of the example.
 version: '3'
 services:
   firefox:
-    image: jlesage/firefox
+    image: imodstyle/firefox
     ports:
       - "5800:5800"
     volumes:
       - "/docker/appdata/firefox:/config:rw"
 ```
-
-## Docker Image Versioning
-
-Each release of a Docker image is versioned.  Prior to october 2022, the
-[semantic versioning](https://semver.org) was used as the versioning scheme.
-
-Since then, versioning scheme changed to
-[calendar versioning](https://calver.org).  The format used is `YY.MM.SEQUENCE`,
-where:
-  - `YY` is the zero-padded year (relative to year 2000).
-  - `MM` is the zero-padded month.
-  - `SEQUENCE` is the incremental release number within the month (first release
-    is 1, second is 2, etc).
 
 ## Docker Image Update
 
@@ -265,7 +244,7 @@ Finally, the Docker image can be manually updated with these steps:
 
   1. Fetch the latest image:
 ```shell
-docker pull jlesage/firefox
+docker pull imodstyle/firefox
 ```
 
   2. Stop the container:
@@ -290,7 +269,7 @@ container image.
 
   1.  Open the *Docker* application.
   2.  Click on *Registry* in the left pane.
-  3.  In the search bar, type the name of the container (`jlesage/firefox`).
+  3.  In the search bar, type the name of the container (`imodstyle/firefox`).
   4.  Select the image, click *Download* and then choose the `latest` tag.
   5.  Wait for the download to complete.  A  notification will appear once done.
   6.  Click on *Container* in the left pane.
@@ -621,6 +600,4 @@ If Firefox is crashing frequently, make sure that:
 Having troubles with the container or have questions?  Please
 [create a new issue].
 
-For other great Dockerized applications, see https://jlesage.github.io/docker-apps.
-
-[create a new issue]: https://github.com/jlesage/docker-firefox/issues
+[create a new issue]: https://github.com/imodstyle/docker-firefox/issues
