@@ -118,7 +118,11 @@ jobs:
             DOCKER_IMAGE_VERSION=${{ steps.prep.outputs.label_version }}
           cache-from: type=gha,scope=${{ env.DOCKER_IMAGE_NAME }}
           cache-to: type=gha,mode=max,scope=${{ env.DOCKER_IMAGE_NAME }}
-          
+
+      - name: Export to tar file
+        run: |
+          docker save ${{ env.DOCKER_IMAGE_NAME }} > ${{ env.DOCKER_IMAGE_NAME }}.tar
+
       - name: Inspect
         if: ${{ steps.prep.outputs.is_release == 'yes' }}
         run: |
