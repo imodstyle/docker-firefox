@@ -1,4 +1,4 @@
-# Docker container for Firefox Based of Jlesage
+# Docker container for Firefox Based of Jlesage Repository, this intended for educational purpose only
 
 This is a Docker container for [Firefox](https://www.mozilla.org/en-US/firefox/).
 
