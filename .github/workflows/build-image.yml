@@ -106,8 +106,8 @@ jobs:
 
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
-
-        - name: Build and push
+      
+      - name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: ${{ steps.prep.outputs.is_release == 'yes' }}
@@ -118,7 +118,7 @@ jobs:
             DOCKER_IMAGE_VERSION=${{ steps.prep.outputs.label_version }}
           cache-from: type=gha,scope=${{ env.DOCKER_IMAGE_NAME }}
           cache-to: type=gha,mode=max,scope=${{ env.DOCKER_IMAGE_NAME }}
-
+          
       - name: Inspect
         if: ${{ steps.prep.outputs.is_release == 'yes' }}
         run: |
