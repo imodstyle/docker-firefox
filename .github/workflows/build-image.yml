@@ -123,8 +123,10 @@ jobs:
         run: |
           mkdir -p imodstyle/firefox
           docker save ${{ env.DOCKER_IMAGE_NAME }} > ${{ env.DOCKER_IMAGE_NAME }}.tar
+      
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
-        with: 
+         with: 
           name: ${{ env.DOCKER_IMAGE_NAME }}
           path: imodstyle/firefox/${{ env.DOCKER_IMAGE_NAME }}.tar
 
