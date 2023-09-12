@@ -5,7 +5,7 @@
 #
 
 # Build the membarrier check tool.
-FROM alpine:3.14 AS membarrier
+FROM alpine:3.15 AS membarrier
 WORKDIR /tmp
 COPY membarrier_check.c .
 RUN apk --no-cache add build-base linux-headers
@@ -13,13 +13,13 @@ RUN gcc -static -o membarrier_check membarrier_check.c
 RUN strip membarrier_check
 
 # Pull base image.
-FROM imodstyle/baseimage-gui:alpine-3.18-v4.4.2
+FROM imodstyle/baseimage-gui:alpine-3.18.3-v4.4.3
 
 # Docker image version is provided via build arg.
 ARG DOCKER_IMAGE_VERSION=
 
 # Define software versions.
-ARG FIREFOX_VERSION=116.0.3-r0
+ARG FIREFOX_VERSION=117.0.3-r2
 #ARG PROFILE_CLEANER_VERSION=2.36
 
 # Define software download URLs.
