@@ -19,7 +19,7 @@ FROM imodstyle/baseimage-gui:alpine-3.18.3-v4.4.3
 ARG DOCKER_IMAGE_VERSION=
 
 # Define software versions.
-ARG FIREFOX_VERSION=117.0-r2
+ARG FIREFOX_VERSION=116.0.3-r0
 #ARG PROFILE_CLEANER_VERSION=2.36
 
 # Define software download URLs.
