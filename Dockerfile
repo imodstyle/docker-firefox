@@ -20,10 +20,10 @@ ARG DOCKER_IMAGE_VERSION=
 
 # Define software versions.
 ARG FIREFOX_VERSION=120.0.1-r0
-#ARG PROFILE_CLEANER_VERSION=2.36
+ARG PROFILE_CLEANER_VERSION=2.45
 
 # Define software download URLs.
-#ARG PROFILE_CLEANER_URL=https://github.com/graysky2/profile-cleaner/raw/v${PROFILE_CLEANER_VERSION}/common/profile-cleaner.in
+ARG PROFILE_CLEANER_URL=https://github.com/graysky2/profile-cleaner/raw/v${PROFILE_CLEANER_VERSION}/common/profile-cleaner.in
 
 # Define working directory.
 WORKDIR /tmp
@@ -52,22 +52,22 @@ RUN \
     true
 
 # Install profile-cleaner.
-#RUN \
-#    add-pkg --virtual build-dependencies curl && \
-#    curl -# -L -o /usr/bin/profile-cleaner {$PROFILE_CLEANER_URL} && \
-#    sed-patch 's/@VERSION@/'${PROFILE_CLEANER_VERSION}'/' /usr/bin/profile-cleaner && \
-#    chmod +x /usr/bin/profile-cleaner && \
-#    add-pkg \
-#        bash \
-#        file \
-#        coreutils \
-#        bc \
-#        parallel \
-#        sqlite \
-#        && \
-#    # Cleanup.
-#    del-pkg build-dependencies && \
-#    rm -rf /tmp/* /tmp/.[!.]*
+RUN \
+    add-pkg --virtual build-dependencies curl && \
+    curl -# -L -o /usr/bin/profile-cleaner {$PROFILE_CLEANER_URL} && \
+    sed-patch 's/@VERSION@/'${PROFILE_CLEANER_VERSION}'/' /usr/bin/profile-cleaner && \
+    chmod +x /usr/bin/profile-cleaner && \
+    add-pkg \
+        bash \
+        file \
+        coreutils \
+        bc \
+        parallel \
+        sqlite \
+        && \
+    # Cleanup.
+    del-pkg build-dependencies && \
+    rm -rf /tmp/* /tmp/.[!.]*
 
 # Generate and install favicons.
 RUN \
