@@ -44,8 +44,8 @@ RUN apt-get -o Acquire::Check-Valid-Until=false update && apt-get install -y \
         xdotool 
 #        && \
     # Remove unneeded icons.
-    find /usr/share/icons/Adwaita -type d -mindepth 1 -maxdepth 1 -not -name 16x16 -not -name scalable -exec rm -rf {} ';' && \
-    true
+#    find /usr/share/icons/Adwaita -type d -mindepth 1 -maxdepth 1 -not -name 16x16 -not -name scalable -exec rm -rf {} ';' && \
+#    true
 
 # Install profile-cleaner.
 #RUN apt-get update \
