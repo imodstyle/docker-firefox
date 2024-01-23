@@ -29,12 +29,10 @@ ARG PROFILE_CLEANER_URL=https://github.com/graysky2/profile-cleaner/raw/v${PROFI
 WORKDIR /tmp
 
 # Install Firefox.
-RUN apt-get update \
-    apt-get install firefox
+RUN apt-get update && apt-get install firefox -y 
 
 # Install extra packages.
-RUN apt-get update \
-    apt-get install \
+RUN apt-get update && apt-get install -y \
         # WebGL support.
         mesa-dri-gallium \
         # Icons used by folder/file selection window (when saving as).
@@ -50,11 +48,11 @@ RUN apt-get update \
 
 # Install profile-cleaner.
 RUN apt-get update \
-    apt-get install --virtual build-dependencies curl && \
+    apt-get install -y --virtual build-dependencies curl && \
     curl -# -L -o /usr/bin/profile-cleaner {$PROFILE_CLEANER_URL} && \
     sed-patch 's/@VERSION@/'${PROFILE_CLEANER_VERSION}'/' /usr/bin/profile-cleaner && \
     chmod +x /usr/bin/profile-cleaner && \
-    apt-get install \
+    apt-get update && apt-get install -y \
         bash \
         file \
         coreutils \
