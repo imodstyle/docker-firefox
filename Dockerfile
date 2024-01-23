@@ -13,13 +13,13 @@ RUN gcc -static -o membarrier_check membarrier_check.c
 RUN strip membarrier_check
 
 # Pull base image.
-FROM imodstyle/baseimage-gui:alpine-3.19-v4.5.1
+FROM imodstyle/baseimage-gui:ubuntu-22.04-v4.5.1
 
 # Docker image version is provided via build arg.
 ARG DOCKER_IMAGE_VERSION=
 
 # Define software versions.
-ARG FIREFOX_VERSION=120.0.1-r0
+#ARG FIREFOX_VERSION=120.0.1
 ARG PROFILE_CLEANER_VERSION=2.45
 
 # Define software download URLs.
@@ -29,15 +29,12 @@ ARG PROFILE_CLEANER_URL=https://github.com/graysky2/profile-cleaner/raw/v${PROFI
 WORKDIR /tmp
 
 # Install Firefox.
-RUN \
-#    add-pkg --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
-#            --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
-#            --upgrade firefox=${FIREFOX_VERSION}
-     add-pkg firefox=${FIREFOX_VERSION}
+RUN apt-get update && apt-get install -y \
+    apt-get install firefox
 
 # Install extra packages.
-RUN \
-    add-pkg \
+RUN apt-get update && apt-get install -y \
+    apt-get install \
         # WebGL support.
         mesa-dri-gallium \
         # Icons used by folder/file selection window (when saving as).
@@ -52,12 +49,12 @@ RUN \
     true
 
 # Install profile-cleaner.
-RUN \
-    add-pkg --virtual build-dependencies curl && \
+RUN apt-get update && apt-get install -y \
+    apt-get install --virtual build-dependencies curl && \
     curl -# -L -o /usr/bin/profile-cleaner {$PROFILE_CLEANER_URL} && \
     sed-patch 's/@VERSION@/'${PROFILE_CLEANER_VERSION}'/' /usr/bin/profile-cleaner && \
     chmod +x /usr/bin/profile-cleaner && \
-    add-pkg \
+    apt-get install \
         bash \
         file \
         coreutils \
@@ -66,7 +63,7 @@ RUN \
         sqlite \
         && \
     # Cleanup.
-    del-pkg build-dependencies && \
+    apt autoremove build-dependencies && \
     rm -rf /tmp/* /tmp/.[!.]*
 
 # Generate and install favicons.
